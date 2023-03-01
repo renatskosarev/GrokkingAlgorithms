@@ -2,19 +2,19 @@ def search(arr, item_to_find):
     low = 0
     high = len(array) - 1
 
-    while low < high:
-        mid = int((low + high) / 2)
+    while low <= high:
+        mid = (low + high) // 2
         guess = arr[mid]
         if guess == item_to_find:
             return mid
-        if guess > item_to_find:
-            high = mid
+        if guess < item_to_find:
+            low = mid + 1
         else:
-            low = mid
+            high = mid - 1
     return None
 
 
-array = [1, 4, 9, 12, 31, 47, 55, 61, 102, 204, 515]
+array = [5]
 item_to_find = int(input())
 
 print(search(array, item_to_find))

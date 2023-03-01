@@ -4,23 +4,23 @@ public class Main {
         
         System.out.println(binarySearch(array, 18));
         System.out.println(binarySearch(array, 247));
-        System.out.println(binarySearch(array, 0));
+        System.out.println(binarySearch(array, 3));
     }
 
     public static int binarySearch(int[] arr, int itemToFind) {
         int low = 0;
-        int high = arr.length;
+        int high = arr.length - 1;
         int mid;
 
-        while (low < high) {
+        while (low <= high) {
             mid = (low + high) / 2;
             if (arr[mid] == itemToFind) {
                 return mid;
             }
             if (arr[mid] < itemToFind) {
-                low = mid;
+                low = mid + 1;
             } else {
-                high = mid;
+                high = mid - 1;
             }
         }
         return -1;
