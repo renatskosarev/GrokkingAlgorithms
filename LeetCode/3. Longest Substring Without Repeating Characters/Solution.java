@@ -3,30 +3,29 @@ import java.util.ArrayList;
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0;
+        if (s.equals("")) {
+            return 0;
+        }
+        int maxLength = 1;
         int currentLength = 0;
+        
         List<Character> symbols = new ArrayList<>();
-        for (char c : s.toCharArray()) {
-            if (symbols.contains(c)) {
-                if (currentLength > maxLength) {
-                    maxLength = currentLength;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                if (!symbols.contains(s.charAt(j))) {
+                    currentLength++;
+                    symbols.add(s.charAt(j));
+                } else {
+                    if (currentLength > maxLength) {
+                        maxLength = currentLength;
+                    }
+                    currentLength = 0;
+                    symbols.clear();
+                    break;
                 }
-                currentLength = 0;
-                symbols.clear();
-            } else {
-                symbols.add(c);
-                currentLength++;
             }
-
         }
 
         return maxLength;
-    }
-
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-        System.out.println(sol.lengthOfLongestSubstring("abcabcbb"));
-        System.out.println(sol.lengthOfLongestSubstring("bbbbb"));
-        System.out.println(sol.lengthOfLongestSubstring("pwwkew"));
     }
 }
